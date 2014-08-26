@@ -31,14 +31,13 @@ def channel_switch(word, word_eol, userdata):
 					go_tab(curr_ctxt, word[1])
 					return hexchat.EAT_ALL
 				# otherwise we just end up with a list of channels with matching names
-		try:
+		if len(channel_list)>0:
 			go_tab(channel_list[0].context, word[1])
 			# if we didn't find a matching tab in our server, but did find a match,
 			# just use the first one that was found
-		except IndexError:
+		else:
 			go_tab(curr_ctxt, word[1])
 			# Didn't find anything, so open tab on this server
-			# TODO: Find a way to catch this
 	else:
 		# User failed input
 		hexchat.prnt('Usage: /g <#channel | user> [network]')
