@@ -50,5 +50,9 @@ def go_tab(context, tab_name):
 	else:
 		context.command('QUERY {}'.format(tab_name))
 
+def unload_callback(userdata):
+	hexchat.prnt('RIP channel_switcher')
+
 hexchat.hook_command('g', channel_switch, help='"/g <#channel | user> [network]" to move to that context')
+hexchat.hook_unload(unload_callback)
 hexchat.prnt('hexchat.channel-switcher.py loaded')
